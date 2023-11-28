@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import VideoCard from "./VideoCard";
+import VideoCard, { AdVideoCard } from "./VideoCard";
 import { YOUTUBE_DATA_API } from "../utills/constants";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
@@ -21,9 +21,10 @@ const VideosContainar = () => {
     <Shimmer />
   ) : (
     <div className="flex flex-wrap">
+      {videos[0] && <AdVideoCard info={videos[0]} data={"This is Ad"} />}
       {videos.map((video) => (
-        <Link to={"/watch?v=" + video.id}>
-          <VideoCard key={video.id} info={video} />
+        <Link to={"/watch?v=" + video.id} key={video.id}>
+          <VideoCard info={video} />
         </Link>
       ))}
     </div>
